@@ -47,8 +47,16 @@ df = pd.read_csv('./student/student-mat.csv')
 
 # Viewing data
 
-df.head() 
+df.head() // Afficher les premières lignes du DataFrame (par défaut, 5 lignes).
 
 df.tail(n) // afiche max n lign 
+
+df.tail() : Afficher les dernières lignes du DataFrame.
+
+df.info() : Afficher des informations sur le DataFrame (types, nombre de valeurs non-nulles, etc.).
+
+df.describe() :La fonction describe() de pandas est utilisée pour obtenir un résumé statistique des colonnes numériques d un DataFrame. Elle fournit des informations statistiques comme la moyenne, l écarttype, les quantiles, etc.
+
+
 
 
