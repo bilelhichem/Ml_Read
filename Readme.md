@@ -57,6 +57,31 @@ df.info() : Afficher des informations sur le DataFrame (types, nombre de valeurs
 
 df.describe() :La fonction describe() de pandas est utilisée pour obtenir un résumé statistique des colonnes numériques d un DataFrame. Elle fournit des informations statistiques comme la moyenne, l écarttype, les quantiles, etc.
 
+df.query('colonne > 10') : Effectuer des requêtes filtrées avec des conditions.
+
+df.drop() :  en pandas est utilisée pour supprimer des lignes ou des colonnes
+
+df.drop('Nom de colone', axis=1, inplace=True) // ca veut dire suprimier une colone 
+
+df.drop(0, axis=0, inplace=True) // supposons que vous souhaitiez supprimer la ligne avec l index 0
+
+df.rename(columns={'ancien_nom': 'nouveau_nom'}, inplace=True): Renommer des colonnes ou des indices.
+
+df.fillna() : permet de remplir les valeurs manquantes (NaN)
+
+df.fillna(value=None, axis=None, inplace=True) 
+// valeur pour remplacer nan
+// axis = =0 Remplir les NaN sur les lignes  ou axis =1 Remplir les NaN sur les coloumnes 
+
+df.dropna(axis=0, inplace=True): Supprimer les lignes avec NaN
+
+df.dropna(axis=1, inplace=True): Supprimer les coloumnes avec NaN
+
+
+
+
+
+
 
 
 
