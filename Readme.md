@@ -78,6 +78,14 @@ df.dropna(axis=0, inplace=True): Supprimer les lignes avec NaN
 df.dropna(axis=1, inplace=True): Supprimer les coloumnes avec NaN
 
 
+df.shape : donner combien de lign et de columnes
+
+drop_duplicates(subset=['email'], keep='first') //  pour drop duplicue value
+
+students.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN juste pour la coloumnes name
+
+
+
 
 
 
