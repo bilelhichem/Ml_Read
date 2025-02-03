@@ -1,7 +1,7 @@
 import pandas as pd ;
 
-df = pd.read_csv('./student/student-mat.csv')
+d =[[1,15],[2,11],[3,11],[4,20]] ; 
 
-
-
-df.tail(3)
+df = pd.DataFrame(d)
+df.columns = ['student_id', 'age']
+print(df)

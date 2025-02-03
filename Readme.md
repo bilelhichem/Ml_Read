@@ -14,7 +14,7 @@ mydataset = {
 # Transformation du dataset en DataFrame (est utilisé pour transformer un dataset sous forme de tableau en une structure matricielle.)
 
 myvar = pd.DataFrame(mydataset)
-
+df.columns = ['student_id', 'age'] // on peut faire ca juste pour renomer les colomnes de DataFrame
 #refer to the row index:
 print(myvar.loc[0])
 
