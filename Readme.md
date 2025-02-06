@@ -84,6 +84,67 @@ drop_duplicates(subset=['email'], keep='first') //  pour drop duplicue value
 
 students.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN juste pour la coloumnes name
 
+# Data Preprocessing EN PYTHON
+
+# les etape nessecaires :
+
+1 ) Importer les Bibliothèques Nécessaires
+ 
+   import pandas as pd 
+   import numpy as np 
+   import seaborn as sns
+   import matplotlib.pyplot as plt 
+
+2 )  Lire le Jeu de Données
+
+  df = pd.read_csv("./student/train.csv")
+  df.head()
+
+3 ) Vérification de la Cohérence des Données (Sanity Check)
+
+ df.isnull().sum() // verifier la somme des value que non manquant 
+ df.isnull().sum() / df.shape[0] * 100 // pourcentage de value que non manquant 
+
+4 ) Analyse Exploratoire des Données (EDA)
+
+  - df.describe()
+  - // Comprendre la distribution des données et  Identifier les valeurs aberrantes(outliers)
+   outliers : Ces valeurs sont souvent situées loin de la majorité
+    ex : 
+    for i in df.select_dtypes(include="number").columns:
+    sns.histplot(data=df, x=i)
+    plt.show()
+
+  -  // scatter plots est d’aider à explorer les relations entre les variables et à découvrir des outliers (valeurs aberrantes).
+   for i in ['Id', 'MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual',
+           'OverallCond', 'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1',
+           'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
+           'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath',
+           'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd',
+           'Fireplaces', 'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF',
+           'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea',
+           'MiscVal', 'MoSold', 'YrSold', 'SalePrice']:
+    sns.scatterplot(data=df, x=i, y='SalePrice')
+    plt.show() 
+   
+  -df.corr() // detetct la correlation entre les variable 
+
+5) Traitement des Valeurs Manquantes 
+
+  // Remplacement des valeurs manquantes par ex la moyenne
+  df.fillna(df.mean(), inplace=True)
+
+  // ou  Supprimer les lignes contenant des valeurs manquantes
+  df.dropna(inplace=True)
+
+6 ) Traitement des Valeurs Aberrantes (Outliers)
+
+7 ) Traitement des Doublons et Valeurs Inutiles
+
+8 ) Normalisation des Données
+
+9 ) Encodage des Données Catégorielles
+  
 
 
 
