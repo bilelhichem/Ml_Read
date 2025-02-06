@@ -70,7 +70,7 @@
 
 ```python
 
-import pandas as pd  # Importation de la bibliothèque pandas
+import pandas as pd  
 
 # Création d'un dataset sous forme de dictionnaire
 mydataset = {
@@ -92,6 +92,7 @@ print(df.loc[[0, 1]]) // afiche 2 lign
 
 # Exemple de création d'une Série pandas
 #  ca veut dire affichier le tableau avec index 
+
 a = [1, 2, 3, 4, 5]
 myvar = pd.Series(a)
 
@@ -108,46 +109,51 @@ print(myvar)
 
 ------------------------------------------------------------------------
 
-# Read CSV Files
+# Fonction en pandas
 
-df = pd.read_csv('./student/student-mat.csv')
+- df = pd.read_csv('./student/student-mat.csv')
 
-# Viewing data
 
-df.head() // Afficher les premières lignes du DataFrame (par défaut, 5 lignes).
+- df.head() // Afficher les premières lignes du DataFrame (par défaut, 5 lignes).
 
-df.tail(n) // afiche max n lign 
+- df.tail(n) // afiche max n lign 
 
-df.tail() : Afficher les dernières lignes du DataFrame.
+- df.tail() : Afficher les dernières lignes du DataFrame.
 
-df.info() : Afficher des informations sur le DataFrame (types, nombre de valeurs non-nulles, etc.).
+- df.info() : Afficher des informations sur le DataFrame (types, nombre de valeurs non-nulles, etc.).
 
-df.describe() :La fonction describe() de pandas est utilisée pour obtenir un résumé statistique des colonnes numériques d un DataFrame. Elle fournit des informations statistiques comme la moyenne, l écarttype, les quantiles, etc.
+- df.describe() :La fonction describe() de pandas est utilisée pour obtenir un résumé statistique des colonnes numériques d un DataFrame. Elle fournit des informations statistiques comme la moyenne, l écarttype, les quantiles, etc.
 
-df.query('colonne > 10') : Effectuer des requêtes filtrées avec des conditions.
+- df.query('colonne > 10') : Effectuer des requêtes filtrées avec des conditions.
 
-df.drop() :  en pandas est utilisée pour supprimer des lignes ou des colonnes
+- df.drop() :  en pandas est utilisée pour supprimer des lignes ou des colonnes
 
-df.drop('Nom de colone', axis=1, inplace=True) // ca veut dire suprimier une colone 
+- df.drop('Nom de colone', axis=1, inplace=True) // ca veut dire suprimier une colone 
 
-df.drop(0, axis=0, inplace=True) // supposons que vous souhaitiez supprimer la ligne avec l index 0
+- df.drop(0, axis=0, inplace=True) // supposons que vous souhaitiez supprimer la ligne avec l index 0
 
-df.rename(columns={'ancien_nom': 'nouveau_nom'}, inplace=True): Renommer des colonnes ou des indices.
+- df.rename(columns={'ancien_nom': 'nouveau_nom'}, inplace=True): Renommer des colonnes ou des indices.
 
-df.fillna() : permet de remplir les valeurs manquantes (NaN)
+- df.fillna() : permet de remplir les valeurs manquantes (NaN)
 
-df.fillna(value=None, axis=None, inplace=True) 
+- df.fillna(value=None, axis=None, inplace=True) 
 // valeur pour remplacer nan
 // axis = =0 Remplir les NaN sur les lignes  ou axis =1 Remplir les NaN sur les coloumnes 
 
-df.dropna(axis=0, inplace=True): Supprimer les lignes avec NaN
+- df.dropna(axis=0, inplace=True): Supprimer les lignes avec NaN
 
-df.dropna(axis=1, inplace=True): Supprimer les coloumnes avec NaN
+- df.dropna(axis=1, inplace=True): Supprimer les coloumnes avec NaN
 
 
-df.shape : donner combien de lign et de columnes
+- df.shape : donner combien de lign et de columnes
 
-drop_duplicates(subset=['email'], keep='first') //  pour drop duplicue value
+- drop_duplicates(subset=['email'], keep='first') //  pour drop duplicue value
 
-students.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN juste pour la coloumnes name
-```
+s- tudents.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN juste pour la coloumnes name
+
+- astype() // Vous pouvez utiliser cette fonction pour convertir une colonne en un autre type
+// df['colonne'] = df['colonne'].astype(nouveau_type)
+
+- pd.concat([df1, df2], ignore_index=True) // fusionner deux dataFrame
+
+
