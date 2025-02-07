@@ -156,4 +156,28 @@ s- tudents.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN ju
 
 - pd.concat([df1, df2], ignore_index=True) // fusionner deux dataFrame
 
+```
+
+# NumPy EN PYTHON
+
+## Exemple de Code NumPy
+
+```python
+
+- arr = np.array([1, 2, 3, 4, 5])  // Create a NumPy array
+
+- arr = np.array([[1, 2, 3], [4, 5, 6]]) // Create a 2-D array
+
+- arr[1:5] // Slice elements from index 1 to index 5-1
+
+- arr[-3:-1] // Slice from the index 3-1  from the end to index 1 from the end
+
+- arr[1:5:2] //  Slice elements from index 1 to index 5-1 avec pas = 2
+
+- arr = np.array([1, 2, 3, 4], dtype='S') // Create an array with data type string
+
+- x = arr.copy() 
+
+- x = arr.view() // if arr change x change 
+
 

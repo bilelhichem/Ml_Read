@@ -1,8 +1,6 @@
 import pandas as pd ;
+import numpy as np ;
 
-d =[[1,15],[2,11],[3,11],[4,20]] ; 
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
 
-df = pd.DataFrame(d)
-df.columns = ['student_id', 'age']
-
-print(len(df.columns))
+print(arr)
