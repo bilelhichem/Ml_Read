@@ -152,4 +152,8 @@ s- tudents.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN ju
 
 - x = arr.view() // if arr change x change 
 
+- random.shuffle(arr)  // pour melanger les valeurs 
+
+
+
 
