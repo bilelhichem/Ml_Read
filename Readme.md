@@ -22,45 +22,17 @@
  df.isnull().sum() // verifier la somme des value que non manquant
  df.isnull().sum() / df.shape[0] * 100 // pourcentage de value que non manquant
 
-4 ) Analyse Exploratoire des Données (EDA)
+4) Détection et gestion des valeurs manquantes
 
-- df.describe()
-- // Comprendre la distribution des données et  Identifier les valeurs aberrantes(outliers)
-   outliers : Ces valeurs sont souvent situées loin de la majorité
-    ex :
-    for i in df.select_dtypes(include="number").columns:
-    sns.histplot(data=df, x=i)
-    plt.show()
+5) Détection et gestion des valeurs aberrantes
 
-- // scatter plots est d’aider à explorer les relations entre les variables et à découvrir des outliers (valeurs aberrantes).
-   for i in ['Id', 'MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual',
-           'OverallCond', 'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1',
-           'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
-           'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath',
-           'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd',
-           'Fireplaces', 'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF',
-           'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea',
-           'MiscVal', 'MoSold', 'YrSold', 'SalePrice']:
-    sns.scatterplot(data=df, x=i, y='SalePrice')
-    plt.show()
+6) Vérification des types de données et conversion
 
-  -df.corr() // detetct la correlation entre les variable
+7) Analyse de la corrélation
 
-5) Traitement des Valeurs Manquantes
+8) Encodage des variables catégorielles
 
-  // Remplacement des valeurs manquantes par ex la moyenne
-  df.fillna(df.mean(), inplace=True)
-
-  // ou  Supprimer les lignes contenant des valeurs manquantes
-  df.dropna(inplace=True)
-
-6 ) Traitement des Valeurs Aberrantes (Outliers)
-
-7 ) Traitement des Doublons et Valeurs Inutiles
-
-8 ) Normalisation des Données
-
-9 ) Encodage des Données Catégorielles
+9) Feature Scaling (normalisation ou standardisation)
 
 ```
 
