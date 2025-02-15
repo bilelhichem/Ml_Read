@@ -50,11 +50,11 @@
    *) Transformation logarithmique (Log Transformation)
    *) Transformation par racine carrée ou cube root
    *) Standardisation (Z-score)
-   *) 
-
 
 6) Vérification des types de données et conversion
 
+  *) détecter les colonnes numériques mal interprétées en texte
+   
 7) Analyse de la corrélation
 
 8) Encodage des variables catégorielles
