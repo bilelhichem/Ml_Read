@@ -25,6 +25,7 @@
 4) Détection et gestion des valeurs manquantes
 
 5) Détection et gestion des valeurs aberrantes
+    par Boxplot : 
 
 6) Vérification des types de données et conversion
 
