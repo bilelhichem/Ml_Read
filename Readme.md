@@ -34,6 +34,15 @@
 
 #
 ```python
+
+ - Comment détecter les outliers ?
+
+ On utilise l'intervalle interquartile (IQR)  = IQR=Q3−Q1
+
+ Valeur< Q1 − 1.5 × IQR // valeur considérée comme un outlier 
+
+ Valeur > Q3 + 1.5 × IQR // valeur  considérée comme un outlier   
+
 6) Vérification des types de données et conversion
 
 7) Analyse de la corrélation
