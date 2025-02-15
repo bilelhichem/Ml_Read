@@ -60,6 +60,9 @@
   *) Traiter les corrélations fortes : on peut le 
     - Supprimer une des variables
     - Fusionner les variables : Tu pourrais créer une nouvelle variable en combinant les deux variables originales. Cela peut se faire par une moyenne, une somme,         ou d'autres opérations mathématiques
+    - Corrélation > 0.7 : Très forte → Risque de redondance, donc supprimer ou fusionner
+    - Corrélation entre 0.4 et 0.7 : Forte mais pas nécessairement à supprimer.
+    - Corrélation < 0.2 : Faible → Peut être supprimée si non pertinente.
   *) Vérifier la corrélation avec la variable cible
 
 
