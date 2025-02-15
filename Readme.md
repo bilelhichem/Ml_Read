@@ -25,10 +25,15 @@
 4) Détection et gestion des valeurs manquantes
 
 5) Détection et gestion des valeurs aberrantes
-    par Boxplot : 
-   ![Image]("./images/Screenshot 2025-02-15 at 6.11.25 PM.png")
+    par Boxplot :
+```
+<p align="center">
+  <img width="559" alt="Image" src="https://github.com/user-attachments/assets/4b4403fe-6576-4921-b931-9b4659ddc9e1" />
+</p>
 
 
+#
+```python
 6) Vérification des types de données et conversion
 
 7) Analyse de la corrélation
