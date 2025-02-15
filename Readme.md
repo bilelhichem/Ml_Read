@@ -57,6 +57,12 @@
    
 7) Analyse de la corrélation
 
+  *) Traiter les corrélations fortes : on peut le 
+    - Supprimer une des variables
+    - Fusionner les variables : Tu pourrais créer une nouvelle variable en combinant les deux variables originales. Cela peut se faire par une moyenne, une somme,         ou d'autres opérations mathématiques
+  *) Vérifier la corrélation avec la variable cible
+
+
 8) Encodage des variables catégorielles
 
 9) Feature Scaling (normalisation ou standardisation)
