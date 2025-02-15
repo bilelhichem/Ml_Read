@@ -43,6 +43,16 @@
 
  Valeur > Q3 + 1.5 × IQR // valeur  considérée comme un outlier   
 
+ - Les deux méthodes principales pour détecter les outliers
+
+   *) La méthode de l'IQR (Interquartile Range - Écart interquartile) : Utilise les quartiles (Q1 et Q3) pour définir une plage acceptable des valeurs.
+   *) La méthode du Z-score : Utilise la moyenne et l’écart-type pour mesurer la distance d’un point par rapport à la moyenne.
+   *) Transformation logarithmique (Log Transformation)
+   *) Transformation par racine carrée ou cube root
+   *) Standardisation (Z-score)
+   *) 
+
+
 6) Vérification des types de données et conversion
 
 7) Analyse de la corrélation
