@@ -26,6 +26,8 @@
 
 5) Détection et gestion des valeurs aberrantes
     par Boxplot : 
+   ![Image]("./images/Screenshot 2025-02-15 at 6.11.25 PM.png")
+
 
 6) Vérification des types de données et conversion
 
