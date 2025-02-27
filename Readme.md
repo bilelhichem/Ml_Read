@@ -1,5 +1,15 @@
 
+````markdown
+
 # Data Preprocessing EN PYTHON
+```
+
+## les etape nessecaires
+
+```python
+
+1 ) Importer les Bibliothèques Nécessaires
+```
 
 ## les etape nessecaires
 
@@ -191,5 +201,17 @@ s- tudents.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN ju
 - random.shuffle(arr)  // pour melanger les valeurs 
 
 
+```
 
 
+# Large Language Models (LLMs)
+
+```python
+
+- niveaux d'utilisation des LLMs (Large Language Models) 
+
+* Niveau 1 - Prompt Engineering :  Tu écris une bonne question ou consigne pour que le modèle te donne la meilleure réponse.
+
+* Niveau 2 - Model Fine-tuning :Tu prends un modèle déjà entraîné et tu lui apprends des choses spécifiques.
+
+* Niveau 3 - Build Your Own : Tu construis un modèle de zéro avec beaucoup de données et de puissance informatique.
