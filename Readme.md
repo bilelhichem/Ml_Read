@@ -1,217 +1,130 @@
+# Data Preprocessing en Python
 
-````markdown
+## 1. Introduction
 
-# Data Preprocessing EN PYTHON
-```
+Le prétraitement des données est une étape essentielle en Data Science. Ce processus permet de nettoyer, transformer et préparer les données pour une analyse plus efficace et précise.
 
-## les etape nessecaires
+## 2. Étapes nécessaires
 
-```python
-
-1 ) Importer les Bibliothèques Nécessaires
-```
-
-## les etape nessecaires
+### 2.1 Importation des bibliothèques
 
 ```python
-
-1 ) Importer les Bibliothèques Nécessaires
-
-   import pandas as pd
-   import numpy as np
-   import seaborn as sns
-   import matplotlib.pyplot as plt
-
-2 )  Lire le Jeu de Données
-
-  df = pd.read_csv("./student/train.csv")
-  df.head()
-
-3 ) Vérification de la Cohérence des Données (Sanity Check)
-
- df.isnull().sum() // verifier la somme des value que non manquant
- df.isnull().sum() / df.shape[0] * 100 // pourcentage de value que non manquant
-
-4) Détection et gestion des valeurs manquantes
-
-5) Détection et gestion des valeurs aberrantes
-    par Boxplot :
-```
-<p align="center">
-  <img width="559" alt="Image" src="https://github.com/user-attachments/assets/4b4403fe-6576-4921-b931-9b4659ddc9e1" />
-</p>
-
-
-#
-```python
-
- - Comment détecter les outliers ?
-
- On utilise l'intervalle interquartile (IQR)  = IQR=Q3−Q1
-
- Valeur< Q1 − 1.5 × IQR // valeur considérée comme un outlier 
-
- Valeur > Q3 + 1.5 × IQR // valeur  considérée comme un outlier   
-
- - Les deux méthodes principales pour détecter les outliers
-
-   *) La méthode de l'IQR (Interquartile Range - Écart interquartile) : Utilise les quartiles (Q1 et Q3) pour définir une plage acceptable des valeurs.
-   *) La méthode du Z-score : Utilise la moyenne et l’écart-type pour mesurer la distance d’un point par rapport à la moyenne.
-   *) Transformation logarithmique (Log Transformation)
-   *) Transformation par racine carrée ou cube root
-   *) Standardisation (Z-score)
-
-6) Vérification des types de données et conversion
-
-  *) détecter les colonnes numériques mal interprétées en texte
-   
-7) Analyse de la corrélation
-
-  *) Traiter les corrélations fortes : on peut le 
-    - Supprimer une des variables
-    - Fusionner les variables : Tu pourrais créer une nouvelle variable en combinant les deux variables originales. Cela peut se faire par une moyenne, une somme,         ou d'autres opérations mathématiques
-    - Corrélation > 0.7 : Très forte → Risque de redondance, donc supprimer ou fusionner
-    - Corrélation entre 0.4 et 0.7 : Forte mais pas nécessairement à supprimer.
-    - Corrélation < 0.2 : Faible → Peut être supprimée si non pertinente.
-  *) Vérifier la corrélation avec la variable cible
-
-
-8) Encodage des variables catégorielles
-
-9) Feature Scaling (normalisation ou standardisation)
-
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 ```
 
-## PANDAS EN PYTHON
-
-## Exemple de Code
+### 2.2 Lecture du jeu de données
 
 ```python
-
-import pandas as pd  
-
-# Création d'un dataset sous forme de dictionnaire
-mydataset = {
-    'cars': ["BMW", "Volvo", "Ford"],
-    'passings': [3, 7, 2]
-}
-
-# Transformation du dataset en DataFrame (est utilisé pour transformer un dataset sous forme de tableau en une structure matricielle.)
-
-myvar = pd.DataFrame(mydataset)
-df.columns = ['student_id', 'age'] // on peut faire ca juste pour renomer les colomnes de DataFrame
-#refer to the row index:
-print(myvar.loc[0])
-
-print(df.loc[[0, 1]]) // afiche 2 lign 
-
-------------------------------------------------------------------------
-
-
-# Exemple de création d'une Série pandas
-#  ca veut dire affichier le tableau avec index 
-
-a = [1, 2, 3, 4, 5]
-myvar = pd.Series(a)
-
-// output
-0 1
-1 2
-2 3
-....
-
-myvar = pd.Series(a, index = ["x", "y", "z"])  
-// dans ce cas on peut donner index 
-# Affichage de la Série
-print(myvar)
-
-------------------------------------------------------------------------
-
-# Fonction en pandas
-
-- df = pd.read_csv('./student/student-mat.csv')
-
-
-- df.head() // Afficher les premières lignes du DataFrame (par défaut, 5 lignes).
-
-- df.tail(n) // afiche max n lign 
-
-- df.tail() : Afficher les dernières lignes du DataFrame.
-
-- df.info() : Afficher des informations sur le DataFrame (types, nombre de valeurs non-nulles, etc.).
-
-- df.describe() :La fonction describe() de pandas est utilisée pour obtenir un résumé statistique des colonnes numériques d un DataFrame. Elle fournit des informations statistiques comme la moyenne, l écarttype, les quantiles, etc.
-
-- df.query('colonne > 10') : Effectuer des requêtes filtrées avec des conditions.
-
-- df.drop() :  en pandas est utilisée pour supprimer des lignes ou des colonnes
-
-- df.drop('Nom de colone', axis=1, inplace=True) // ca veut dire suprimier une colone 
-
-- df.drop(0, axis=0, inplace=True) // supposons que vous souhaitiez supprimer la ligne avec l index 0
-
-- df.rename(columns={'ancien_nom': 'nouveau_nom'}, inplace=True): Renommer des colonnes ou des indices.
-
-- df.fillna() : permet de remplir les valeurs manquantes (NaN)
-
-- df.fillna(value=None, axis=None, inplace=True) 
-// valeur pour remplacer nan
-// axis = =0 Remplir les NaN sur les lignes  ou axis =1 Remplir les NaN sur les coloumnes 
-
-- df.dropna(axis=0, inplace=True): Supprimer les lignes avec NaN
-
-- df.dropna(axis=1, inplace=True): Supprimer les coloumnes avec NaN
-
-
-- df.shape : donner combien de lign et de columnes
-
-- drop_duplicates(subset=['email'], keep='first') //  pour drop duplicue value
-
-s- tudents.dropna(subset =['name'],axis = 0) // Supprimer les lignes avec NaN juste pour la coloumnes name
-
-- astype() // Vous pouvez utiliser cette fonction pour convertir une colonne en un autre type
-// df['colonne'] = df['colonne'].astype(nouveau_type)
-
-- pd.concat([df1, df2], ignore_index=True) // fusionner deux dataFrame
-
+df = pd.read_csv("./student/train.csv")
+df.head()
 ```
 
-# NumPy EN PYTHON
-
-## Exemple de Code NumPy
+### 2.3 Vérification de la cohérence des données
 
 ```python
-
-- arr = np.array([1, 2, 3, 4, 5])  // Create a NumPy array
-
-- arr = np.array([[1, 2, 3], [4, 5, 6]]) // Create a 2-D array
-
-- arr[1:5] // Slice elements from index 1 to index 5-1
-
-- arr[-3:-1] // Slice from the index 3-1  from the end to index 1 from the end
-
-- arr[1:5:2] //  Slice elements from index 1 to index 5-1 avec pas = 2
-
-- arr = np.array([1, 2, 3, 4], dtype='S') // Create an array with data type string
-
-- x = arr.copy() 
-
-- x = arr.view() // if arr change x change 
-
-- random.shuffle(arr)  // pour melanger les valeurs 
-
-
+df.isnull().sum()  # Nombre de valeurs manquantes
+df.isnull().sum() / df.shape[0] * 100  # Pourcentage de valeurs manquantes
 ```
 
+### 2.4 Gestion des valeurs manquantes et aberrantes
 
-# Large Language Models (LLMs)
+#### Détection des valeurs aberrantes avec un Boxplot
 
 ```python
+sns.boxplot(x=df['colonne'])
+```
 
-- niveaux d'utilisation des LLMs (Large Language Models) 
+![Boxplot Image](https://github.com/user-attachments/assets/4b4403fe-6576-4921-b931-9b4659ddc9e1)
 
-* Niveau 1 - Prompt Engineering :  Tu écris une bonne question ou consigne pour que le modèle te donne la meilleure réponse.
+#### Méthodes de détection des valeurs aberrantes
 
-* Niveau 2 - Model Fine-tuning :Tu prends un modèle déjà entraîné et tu lui apprends des choses spécifiques.
+- **Intervalle interquartile (IQR)**
 
-* Niveau 3 - Build Your Own : Tu construis un modèle de zéro avec beaucoup de données et de puissance informatique.
+```python
+Q1 = df['colonne'].quantile(0.25)
+Q3 = df['colonne'].quantile(0.75)
+IQR = Q3 - Q1
+outliers = df[(df['colonne'] < (Q1 - 1.5 * IQR)) | (df['colonne'] > (Q3 + 1.5 * IQR))]
+```
+
+- **Z-score**
+
+```python
+from scipy import stats
+df['z_score'] = np.abs(stats.zscore(df['colonne']))
+outliers = df[df['z_score'] > 3]
+```
+
+### 2.5 Conversion et vérification des types de données
+
+```python
+df.dtypes
+df['colonne'] = df['colonne'].astype(int)  # Conversion en entier
+```
+
+### 2.6 Analyse de la corrélation
+
+```python
+corr_matrix = df.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+```
+
+### 2.7 Encodage des variables catégorielles
+
+```python
+df = pd.get_dummies(df, columns=['categorie'], drop_first=True)
+```
+
+### 2.8 Normalisation et standardisation
+
+```python
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+scaler = StandardScaler()
+df_scaled = scaler.fit_transform(df[['colonne']])
+```
+
+## 3. Manipulation des Données avec Pandas
+
+### 3.1 Création et manipulation de DataFrame
+
+```python
+# Création d'un DataFrame
+df = pd.DataFrame({'Nom': ['Alice', 'Bob'], 'Age': [25, 30]})
+df.columns = ['ID', 'Nom', 'Age']  # Renommer les colonnes
+```
+
+### 3.2 Opérations courantes
+
+```python
+df.head()  # Afficher les premières lignes
+df.info()  # Informations sur le DataFrame
+df.describe()  # Statistiques descriptives
+df.dropna(inplace=True)  # Suppression des valeurs NaN
+df.fillna(value=0, inplace=True)  # Remplacement des valeurs NaN
+df.drop_duplicates(subset=['Nom'], keep='first', inplace=True)  # Suppression des doublons
+df = pd.concat([df1, df2], ignore_index=True)  # Fusionner deux DataFrames
+```
+
+## 4. NumPy en Python
+
+### 4.1 Manipulation des tableaux NumPy
+
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])  # Création d'un tableau NumPy
+arr = np.array([[1, 2, 3], [4, 5, 6]])  # Tableau 2D
+arr[1:4]  # Extraction des éléments
+np.random.shuffle(arr)  # Mélanger les valeurs
+```
+
+## 5. Large Language Models (LLMs)
+
+### 5.1 Niveaux d'utilisation des LLMs
+
+- **Niveau 1 - Prompt Engineering** : Rédaction de prompts efficaces
+- **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné
+- **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro
+
