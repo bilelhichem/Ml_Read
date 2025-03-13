@@ -29,6 +29,11 @@ df.isnull().sum()  # Nombre de valeurs manquantes
 df.isnull().sum() / df.shape[0] * 100  # Pourcentage de valeurs manquantes
 ```
 
+**Gestion des valeurs manquantes selon les modèles :**
+- **XGBoost** : Gère directement les valeurs manquantes. Il apprend le meilleur chemin pour les données manquantes lors de la construction des arbres.
+- **Random Forest** : Ne supporte pas les valeurs manquantes directement. Il faut les imputer (moyenne, médiane...) avant d'entraîner le modèle.
+- **Linear Regression** : Ne peut pas gérer les valeurs manquantes et nécessite une imputation préalable.
+
 ### 2.4 Gestion des valeurs manquantes et aberrantes
 
 #### Détection des valeurs aberrantes avec un Boxplot
@@ -72,7 +77,20 @@ corr_matrix = df.corr()
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
 ```
 
+#### Mutual Information
+
+La **mutual information** détecte les relations complexes entre les variables et aide à identifier les features les plus informatives pour la variable cible.
+
+```python
+from sklearn.feature_selection import mutual_info_regression
+mi_scores = mutual_info_regression(df.drop('cible', axis=1), df['cible'])
+pd.Series(mi_scores, index=df.drop('cible', axis=1).columns).sort_values(ascending=False)
+```
+
 ### 2.7 Encodage des variables catégorielles
+
+- **Label Encoding** : à utiliser pour les variables ordinales (ordre logique entre les catégories).
+- **One Hot Encoding** : préférable pour les variables nominales, car chaque catégorie devient une colonne binaire.
 
 ```python
 df = pd.get_dummies(df, columns=['categorie'], drop_first=True)
@@ -84,6 +102,18 @@ df = pd.get_dummies(df, columns=['categorie'], drop_first=True)
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 scaler = StandardScaler()
 df_scaled = scaler.fit_transform(df[['colonne']])
+```
+
+### 2.9 Correction de la Skewness (asymétrie)
+
+La **skewness** permet de comprendre comment les données sont réparties et si des ajustements sont nécessaires.
+
+- La transformation **Yeo-Johnson** aide à rendre les données plus symétriques.
+
+```python
+from sklearn.preprocessing import PowerTransformer
+pt = PowerTransformer(method='yeo-johnson')
+df['colonne_transforme'] = pt.fit_transform(df[['colonne']])
 ```
 
 ## 3. Manipulation des Données avec Pandas
