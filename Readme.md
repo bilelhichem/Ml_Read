@@ -205,6 +205,7 @@ Variance = np.var(f_hat(x_i))
 # Bruit
 Bruit = "Erreur irrécupérable due au bruit des données"
 ```
+
 - Le **biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur que l'on essaie de prédire.  
   Lorsque le biais est élevé, le modèle fait souvent des prédictions erronées.
   
@@ -230,6 +231,5 @@ Bruit = "Erreur irrécupérable due au bruit des données"
 
 ## 4. Coût de classification
 \( C = C_{FP} \times FP + C_{FN} \times FN \)
-
-📌 **Conclusion** : Comprendre ces métriques permet d'adapter les modèles aux besoins spécifiques (santé, finance, sécurité, etc.).
+```
 
