@@ -1,5 +1,3 @@
-D'accord ! Voici le contenu mis à jour de ton README avec la notation mathématique correcte, sans modification :
-
 ```markdown
 ## Data Preprocessing en Python
 
@@ -33,6 +31,7 @@ df.isnull().sum() / df.shape[0] * 100  # Pourcentage de valeurs manquantes
 ```
 
 **Gestion des valeurs manquantes selon les modèles :**
+
 - **XGBoost** : Gère directement les valeurs manquantes. Il apprend le meilleur chemin pour les données manquantes lors de la construction des arbres.
 - **Random Forest** : Ne supporte pas les valeurs manquantes directement. Il faut les imputer (moyenne, médiane...) avant d'entraîner le modèle.
 - **Linear Regression** : Ne peut pas gérer les valeurs manquantes et nécessite une imputation préalable.
@@ -158,85 +157,61 @@ np.random.shuffle(arr)  # Mélanger les valeurs
 - **Niveau 1 - Prompt Engineering** : Rédaction de prompts efficaces
 - **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné
 - **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro
+  
+## Modèle
 
-Bien sûr, voici la notation mathématique pour les différentes fonctions et concepts que tu as mentionnés, en utilisant une notation plus mathématique au lieu de Python.
+### 1) Fonction de coût et erreur
 
-## Model
+La fonction que tu montres sur l’image est la racine de l’erreur quadratique moyenne (RMSE - Root Mean Squared Error) :  
+Utilisée pour évaluer la performance du modèle après l’entraînement.
 
-### 1) **Fonction de coût (MSE - Mean Squared Error)**
-
-La fonction de coût est utilisée pour l'entraînement du modèle, et elle est donnée par :
-
-\[
-J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h(\mathbf{x}_i) - y_i \right)^2
-\]
-
-Où :  
-- \(m\) est le nombre d'exemples d'entraînement  
-- \(h(\mathbf{x}_i)\) est la prédiction du modèle pour l'exemple \(\mathbf{x}_i\)  
-- \(y_i\) est la valeur réelle de l'exemple d'entraînement
-
-### 2) **Erreur quadratique moyenne (RMSE - Root Mean Squared Error)**
-
-L'erreur quadratique moyenne (RMSE) est utilisée pour évaluer la performance du modèle après l'entraînement, et elle est donnée par :
-
-\[
-\text{RMSE} = \sqrt{\frac{1}{m} \sum_{i=1}^{m} \left( f(\mathbf{x}_i) - y_i \right)^2}
-\]
-
-Où :  
-- \(f(\mathbf{x}_i)\) est la prédiction du modèle pour l'exemple \(\mathbf{x}_i\)  
-- \(y_i\) est la valeur réelle de l'exemple d'entraînement
-
-### 3) **Décomposition de l'erreur en biais, variance et bruit**
-
-L'erreur totale peut être décomposée en trois composants :
-
-\[
-\text{Erreur totale} = \text{Biais}^2 + \text{Variance} + \text{Bruit}
-\]
-
-#### a) **Biais**
-
-Le biais est la différence entre la moyenne des prédictions du modèle et la valeur réelle :
-
-\[
-\text{Biais} = \mathbb{E}[f(\mathbf{x})] - y
-\]
-
-Où :  
-- \(\mathbb{E}[f(\mathbf{x})]\) est la moyenne des prédictions du modèle  
-- \(y\) est la vraie valeur
-
-#### b) **Variance**
-
-La variance mesure la variabilité des prédictions du modèle en fonction des différents sous-ensembles de données d'entraînement. Elle est donnée par :
-
-\[
-\text{Variance} = \mathbb{E}[(f(\mathbf{x}) - \mathbb{E}[f(\mathbf{x})])^2]
-\]
-
-Où :  
-- \(\mathbb{E}[f(\mathbf{x})]\) est la moyenne des prédictions du modèle  
-- \(f(\mathbf{x})\) est la prédiction du modèle
-
-#### c) **Bruit (Erreur irrécupérable)**
-
-Le bruit est une erreur due aux variations aléatoires et aux imperfections dans les données. Il est irrécupérable et ne peut pas être réduit par l'entraînement du modèle :
-
-\[
-\text{Bruit} = \text{Erreur irrécupérable due aux variations des données}
-\]
-
-Cela représente une partie de l'erreur qui est causée par des facteurs externes ou aléatoires dans les données et ne peut pas être éliminée par un modèle.
-
----
-
-En résumé, la décomposition complète de l'erreur totale pour un modèle d'apprentissage automatique est donnée par :
-
-\[
-\text{Erreur totale} = \underbrace{\text{Biais}^2}_{\text{Erreur systématique}} + \underbrace{\text{Variance}}_{\text{Erreur due à la sensibilité du modèle aux données}} + \underbrace{\text{Bruit}}_{\text{Erreur irréductible due aux données}}
-\]
+```python
+# Erreur quadratique moyenne (RMSE)
+err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
 ```
 
-Avec cela, la notation mathématique est préservée, et le README est prêt à être copié et utilisé directement.
+Alors que la fonction de coût que tu avais mentionnée précédemment est la fonction de coût de la régression linéaire (MSE - Mean Squared Error) :  
+Utilisée pour entraîner le modèle et ajuster \(\theta_0, \theta_1\) en minimisant l’erreur.
+
+```python
+# Fonction de coût (MSE)
+J_theta = (1 / (2 * m)) * sum((h(x_i) - y_i) ** 2 for i in range(1, m + 1))
+```
+
+### 2) Décomposition de l'erreur biais-variance (RMSE)
+
+```python
+# Erreur totale
+err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
+```
+
+On décompose l'erreur en trois termes :  
+
+- **Biais** (\(Bias^2(x_0)\))  
+- **Variance** (\(Var[\hat{f}(x_0)]\))  
+- **Bruit** (Erreur irrécupérable, qui provient du bruit dans les données)
+
+#### Biais, Variance et Bruit
+
+L'erreur irrécupérable est une partie de l'erreur qui ne peut pas être réduite, car elle est causée par le bruit des données.
+
+```python
+# Biais
+Bias = np.mean(f_hat(x_i) - y_i)
+
+# Variance
+Variance = np.var(f_hat(x_i))
+
+# Bruit
+Bruit = "Erreur irrécupérable due au bruit des données"
+```
+
+- Le **biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur que l'on essaie de prédire.  
+  Lorsque le biais est élevé, le modèle fait souvent des prédictions erronées.
+  
+- La **variance** d'un modèle fait référence à sa sensibilité aux variations des données.  
+  Si la variance est élevée, les prédictions du modèle peuvent varier énormément en fonction des données d'entraînement.
+
+```
+
+
