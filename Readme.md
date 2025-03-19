@@ -158,3 +158,57 @@ np.random.shuffle(arr)  # Mélanger les valeurs
 - **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné
 - **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro
 
+## Modèle
+
+### 1) Fonction de coût et erreur
+
+La fonction que tu montres sur l’image est la racine de l’erreur quadratique moyenne (RMSE - Root Mean Squared Error) :  
+Utilisée pour évaluer la performance du modèle après l’entraînement.
+
+```python
+# Erreur quadratique moyenne (RMSE)
+err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
+```
+
+Alors que la fonction de coût que tu avais mentionnée précédemment est la fonction de coût de la régression linéaire (MSE - Mean Squared Error) :  
+Utilisée pour entraîner le modèle et ajuster \(\theta_0, \theta_1\) en minimisant l’erreur.
+
+```python
+# Fonction de coût (MSE)
+J_theta = (1 / (2 * m)) * sum((h(x_i) - y_i) ** 2 for i in range(1, m + 1))
+```
+
+### 2) Décomposition de l'erreur biais-variance (RMSE)
+
+```python
+# Erreur totale
+err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
+```
+
+On décompose l'erreur en trois termes :  
+- **Biais** (\(Bias^2(x_0)\))  
+- **Variance** (\(Var[\hat{f}(x_0)]\))  
+- **Bruit** (Erreur irrécupérable, qui provient du bruit dans les données)
+
+#### Biais, Variance et Bruit
+
+L'erreur irrécupérable est une partie de l'erreur qui ne peut pas être réduite, car elle est causée par le bruit des données.
+
+```python
+# Biais
+Bias = np.mean(f_hat(x_i) - y_i)
+
+# Variance
+Variance = np.var(f_hat(x_i))
+
+# Bruit
+Bruit = "Erreur irrécupérable due au bruit des données"
+```
+
+- Le **biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur que l'on essaie de prédire.  
+  Lorsque le biais est élevé, le modèle fait souvent des prédictions erronées.
+  
+- La **variance** d'un modèle fait référence à sa sensibilité aux variations des données.  
+  Si la variance est élevée, les prédictions du modèle peuvent varier énormément en fonction des données d'entraînement.
+```
+
