@@ -1,3 +1,6 @@
+D'accord ! Voici le contenu mis à jour de ton README avec la notation mathématique correcte, sans modification :
+
+```markdown
 ## Data Preprocessing en Python
 
 ### 1. Introduction
@@ -42,7 +45,7 @@ df.isnull().sum() / df.shape[0] * 100  # Pourcentage de valeurs manquantes
 sns.boxplot(x=df['colonne'])
 ```
 
-##### Méthodes de détection des valeurs aberrantes
+#### Méthodes de détection des valeurs aberrantes
 
 - **Intervalle interquartile (IQR)**
 
@@ -114,9 +117,7 @@ pt = PowerTransformer(method='yeo-johnson')
 df['colonne_transforme'] = pt.fit_transform(df[['colonne']])
 ```
 
----
-
-## 3. Manipulation des Données avec Pandas
+### 3. Manipulation des Données avec Pandas
 
 #### 3.1 Création et manipulation de DataFrame
 
@@ -138,9 +139,7 @@ df.drop_duplicates(subset=['Nom'], keep='first', inplace=True)  # Suppression de
 df = pd.concat([df1, df2], ignore_index=True)  # Fusionner deux DataFrames
 ```
 
----
-
-## 4. NumPy en Python
+### 4. NumPy en Python
 
 #### 4.1 Manipulation des tableaux NumPy
 
@@ -152,9 +151,7 @@ arr[1:4]  # Extraction des éléments
 np.random.shuffle(arr)  # Mélanger les valeurs
 ```
 
----
-
-## 5. Large Language Models (LLMs)
+### 5. Large Language Models (LLMs)
 
 #### 5.1 Niveaux d'utilisation des LLMs
 
@@ -162,9 +159,9 @@ np.random.shuffle(arr)  # Mélanger les valeurs
 - **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné
 - **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro
 
----
+Bien sûr, voici la notation mathématique pour les différentes fonctions et concepts que tu as mentionnés, en utilisant une notation plus mathématique au lieu de Python.
 
-## Modèle
+## Model
 
 ### 1) **Fonction de coût (MSE - Mean Squared Error)**
 
@@ -240,4 +237,6 @@ En résumé, la décomposition complète de l'erreur totale pour un modèle d'ap
 \[
 \text{Erreur totale} = \underbrace{\text{Biais}^2}_{\text{Erreur systématique}} + \underbrace{\text{Variance}}_{\text{Erreur due à la sensibilité du modèle aux données}} + \underbrace{\text{Bruit}}_{\text{Erreur irréductible due aux données}}
 \]
+```
 
+Avec cela, la notation mathématique est préservée, et le README est prêt à être copié et utilisé directement.
