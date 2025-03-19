@@ -205,13 +205,31 @@ Variance = np.var(f_hat(x_i))
 # Bruit
 Bruit = "Erreur irrécupérable due au bruit des données"
 ```
-
 - Le **biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur que l'on essaie de prédire.  
   Lorsque le biais est élevé, le modèle fait souvent des prédictions erronées.
   
 - La **variance** d'un modèle fait référence à sa sensibilité aux variations des données.  
   Si la variance est élevée, les prédictions du modèle peuvent varier énormément en fonction des données d'entraînement.
 
-```
+## Évaluation des Modèles de Classification
 
+## 1. Matrice de confusion
+|                | Prédire Positif | Prédire Négatif |
+|---------------|----------------|----------------|
+| **Classe positive** | TP | FN |
+| **Classe négative** | FP | TN |
+
+## 2. Principales métriques
+- **Taux de vrais positifs (Recall)** : \( TPR = \frac{TP}{P} \)
+- **Taux de faux positifs** : \( FPR = \frac{FP}{N} \)
+- **Taux de vrais négatifs (Spécificité)** : \( TNR = \frac{TN}{N} \)
+- **Taux de faux négatifs** : \( FNR = \frac{FN}{P} \)
+
+## 3. Taux d'erreur pondéré
+\( \pi_P \times \text{FNR} + \pi_N \times \text{FPR} \)
+
+## 4. Coût de classification
+\( C = C_{FP} \times FP + C_{FN} \times FN \)
+
+📌 **Conclusion** : Comprendre ces métriques permet d'adapter les modèles aux besoins spécifiques (santé, finance, sécurité, etc.).
 
