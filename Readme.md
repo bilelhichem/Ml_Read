@@ -1,13 +1,8 @@
-```markdown
-## Data Preprocessing en Python
+# Data Preprocessing en Python
 
-### 1. Introduction
+## 2. Étapes nécessaires
 
-Le prétraitement des données est une étape essentielle en Data Science. Ce processus permet de nettoyer, transformer et préparer les données pour une analyse plus efficace et précise.
-
-### 2. Étapes nécessaires
-
-#### 2.1 Importation des bibliothèques
+### 2.1 Importation des Bibliothèques
 
 ```python
 import pandas as pd
@@ -16,14 +11,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 ```
 
-#### 2.2 Lecture du jeu de données
+### 2.2 Lecture du Jeu de Données
 
 ```python
 df = pd.read_csv("./student/train.csv")
 df.head()
 ```
 
-#### 2.3 Vérification de la cohérence des données
+### 2.3 Vérification de la Cohérence des Données
 
 ```python
 df.isnull().sum()  # Nombre de valeurs manquantes
@@ -31,22 +26,22 @@ df.isnull().sum() / df.shape[0] * 100  # Pourcentage de valeurs manquantes
 ```
 
 **Gestion des valeurs manquantes selon les modèles :**
-
-- **XGBoost** : Gère directement les valeurs manquantes. Il apprend le meilleur chemin pour les données manquantes lors de la construction des arbres.
+ 
+- **XGBoost** : Gère directement les valeurs manquantes en apprenant le meilleur chemin pour les données manquantes lors de la construction des arbres.
 - **Random Forest** : Ne supporte pas les valeurs manquantes directement. Il faut les imputer (moyenne, médiane...) avant d'entraîner le modèle.
-- **Linear Regression** : Ne peut pas gérer les valeurs manquantes et nécessite une imputation préalable.
+- **Régression Linéaire** : Ne peut pas gérer les valeurs manquantes, une imputation préalable est donc nécessaire.
 
-#### 2.4 Gestion des valeurs manquantes et aberrantes
+### 2.4 Gestion des Valeurs Manquantes et Aberrantes
 
-##### Détection des valeurs aberrantes avec un Boxplot
+#### Détection des Valeurs Aberrantes avec un Boxplot
 
 ```python
 sns.boxplot(x=df['colonne'])
 ```
 
-#### Méthodes de détection des valeurs aberrantes
+#### Méthodes de Détection des Valeurs Aberrantes
 
-- **Intervalle interquartile (IQR)**
+- **Intervalle Interquartile (IQR)**
 
 ```python
 Q1 = df['colonne'].quantile(0.25)
@@ -63,23 +58,23 @@ df['z_score'] = np.abs(stats.zscore(df['colonne']))
 outliers = df[df['z_score'] > 3]
 ```
 
-#### 2.5 Conversion et vérification des types de données
+### 2.5 Conversion et Vérification des Types de Données
 
 ```python
 df.dtypes
 df['colonne'] = df['colonne'].astype(int)  # Conversion en entier
 ```
 
-#### 2.6 Analyse de la corrélation
+### 2.6 Analyse de la Corrélation
 
 ```python
 corr_matrix = df.corr()
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
 ```
 
-##### Mutual Information
+#### Mutual Information
 
-La **mutual information** détecte les relations complexes entre les variables et aide à identifier les features les plus informatives pour la variable cible.
+La **mutual information** permet de détecter des relations complexes entre les variables et aide à identifier les variables les plus informatives pour la variable cible.
 
 ```python
 from sklearn.feature_selection import mutual_info_regression
@@ -87,16 +82,16 @@ mi_scores = mutual_info_regression(df.drop('cible', axis=1), df['cible'])
 pd.Series(mi_scores, index=df.drop('cible', axis=1).columns).sort_values(ascending=False)
 ```
 
-#### 2.7 Encodage des variables catégorielles
+### 2.7 Encodage des Variables Catégorielles
 
-- **Label Encoding** : à utiliser pour les variables ordinales (ordre logique entre les catégories).
-- **One Hot Encoding** : préférable pour les variables nominales, car chaque catégorie devient une colonne binaire.
+- **Label Encoding** : Utilisé pour les variables ordinales (présentant un ordre logique entre les catégories).
+- **One-Hot Encoding** : Préféré pour les variables nominales, chaque catégorie devient une colonne binaire.
 
 ```python
 df = pd.get_dummies(df, columns=['categorie'], drop_first=True)
 ```
 
-#### 2.8 Normalisation et standardisation
+### 2.8 Normalisation et Standardisation
 
 ```python
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -104,11 +99,9 @@ scaler = StandardScaler()
 df_scaled = scaler.fit_transform(df[['colonne']])
 ```
 
-#### 2.9 Correction de la Skewness (asymétrie)
+### 2.9 Correction de la Skewness (Asymétrie)
 
-La **skewness** permet de comprendre comment les données sont réparties et si des ajustements sont nécessaires.
-
-- La transformation **Yeo-Johnson** aide à rendre les données plus symétriques.
+La **skewness** permet de comprendre comment les données sont réparties et si des ajustements sont nécessaires. La transformation **Yeo-Johnson** aide à rendre les données plus symétriques.
 
 ```python
 from sklearn.preprocessing import PowerTransformer
@@ -116,9 +109,9 @@ pt = PowerTransformer(method='yeo-johnson')
 df['colonne_transforme'] = pt.fit_transform(df[['colonne']])
 ```
 
-### 3. Manipulation des Données avec Pandas
+## 3. Manipulation des Données avec Pandas
 
-#### 3.1 Création et manipulation de DataFrame
+### 3.1 Création et Manipulation de DataFrame
 
 ```python
 # Création d'un DataFrame
@@ -126,7 +119,7 @@ df = pd.DataFrame({'Nom': ['Alice', 'Bob'], 'Age': [25, 30]})
 df.columns = ['ID', 'Nom', 'Age']  # Renommer les colonnes
 ```
 
-#### 3.2 Opérations courantes
+### 3.2 Opérations Courantes
 
 ```python
 df.head()  # Afficher les premières lignes
@@ -138,9 +131,9 @@ df.drop_duplicates(subset=['Nom'], keep='first', inplace=True)  # Suppression de
 df = pd.concat([df1, df2], ignore_index=True)  # Fusionner deux DataFrames
 ```
 
-### 4. NumPy en Python
+## 4. NumPy en Python
 
-#### 4.1 Manipulation des tableaux NumPy
+### 4.1 Manipulation des Tableaux NumPy
 
 ```python
 import numpy as np
@@ -150,50 +143,41 @@ arr[1:4]  # Extraction des éléments
 np.random.shuffle(arr)  # Mélanger les valeurs
 ```
 
-### 5. Large Language Models (LLMs)
+## 5. Large Language Models (LLMs)
 
-#### 5.1 Niveaux d'utilisation des LLMs
+### 5.1 Niveaux d'Utilisation des LLMs
 
-- **Niveau 1 - Prompt Engineering** : Rédaction de prompts efficaces
-- **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné
-- **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro
-  
-## Modèle
+- **Niveau 1 - Prompt Engineering** : Rédaction de prompts efficaces.
+- **Niveau 2 - Model Fine-tuning** : Adaptation d'un modèle pré-entraîné.
+- **Niveau 3 - Build Your Own** : Entraînement d'un modèle à partir de zéro.
 
-### 1) Fonction de coût et erreur
+---
 
-La fonction que tu montres sur l’image est la racine de l’erreur quadratique moyenne (RMSE - Root Mean Squared Error) :  
-Utilisée pour évaluer la performance du modèle après l’entraînement.
+## 6. Modèle
+
+### 6.1 Fonction de Coût et Erreur
+
+#### Erreur Quadratique Moyenne (RMSE)
+
+La fonction RMSE permet d'évaluer la performance du modèle après l'entraînement.
 
 ```python
 # Erreur quadratique moyenne (RMSE)
 err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
 ```
 
-Alors que la fonction de coût que tu avais mentionnée précédemment est la fonction de coût de la régression linéaire (MSE - Mean Squared Error) :  
-Utilisée pour entraîner le modèle et ajuster \(\theta_0, \theta_1\) en minimisant l’erreur.
+#### Fonction de Coût de la Régression Linéaire (MSE)
+
+La fonction de coût pour la régression linéaire est utilisée pour entraîner le modèle et ajuster les paramètres (\(\theta_0, \theta_1\)).
 
 ```python
 # Fonction de coût (MSE)
 J_theta = (1 / (2 * m)) * sum((h(x_i) - y_i) ** 2 for i in range(1, m + 1))
 ```
 
-### 2) Décomposition de l'erreur biais-variance (RMSE)
+### 6.2 Décomposition de l'Erreur Biais-Variance
 
-```python
-# Erreur totale
-err = (1 / m) * sum((f_hat(x_i) - y_i) ** 2 for i in range(1, m + 1))
-```
-
-On décompose l'erreur en trois termes :  
-
-- **Biais** (\(Bias^2(x_0)\))  
-- **Variance** (\(Var[\hat{f}(x_0)]\))  
-- **Bruit** (Erreur irrécupérable, qui provient du bruit dans les données)
-
-#### Biais, Variance et Bruit
-
-L'erreur irrécupérable est une partie de l'erreur qui ne peut pas être réduite, car elle est causée par le bruit des données.
+L'erreur totale peut être décomposée en trois termes : Biais, Variance et Bruit.
 
 ```python
 # Biais
@@ -206,30 +190,66 @@ Variance = np.var(f_hat(x_i))
 Bruit = "Erreur irrécupérable due au bruit des données"
 ```
 
-- Le **biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur que l'on essaie de prédire.  
-  Lorsque le biais est élevé, le modèle fait souvent des prédictions erronées.
-  
-- La **variance** d'un modèle fait référence à sa sensibilité aux variations des données.  
-  Si la variance est élevée, les prédictions du modèle peuvent varier énormément en fonction des données d'entraînement.
+#### Interprétation
 
-## Évaluation des Modèles de Classification
+- **Biais** mesure l'écart entre la moyenne des prédictions du modèle et la valeur réelle.
+- **Variance** représente la sensibilité du modèle aux variations des données d'entraînement.
+- **Bruit** est l'erreur irrécupérable due aux imperfections des données.
 
-## 1. Matrice de confusion
+---
+
+## 7. Évaluation des Modèles de Classification
+
+### 7.1 Matrice de Confusion
+
 |                | Prédire Positif | Prédire Négatif |
-|---------------|----------------|----------------|
-| **Classe positive** | TP | FN |
-| **Classe négative** | FP | TN |
+|----------------|-----------------|-----------------|
+| **Classe positive** | TP              | FN              |
+| **Classe négative** | FP              | TN              |
 
-## 2. Principales métriques
+### 7.2 Principales Métriques
+
 - **Taux de vrais positifs (Recall)** : \( TPR = \frac{TP}{P} \)
 - **Taux de faux positifs** : \( FPR = \frac{FP}{N} \)
 - **Taux de vrais négatifs (Spécificité)** : \( TNR = \frac{TN}{N} \)
 - **Taux de faux négatifs** : \( FNR = \frac{FN}{P} \)
 
-## 3. Taux d'erreur pondéré
-\( \pi_P \times \text{FNR} + \pi_N \times \text{FPR} \)
+### 7.3 Taux d'Erreur Pondéré
 
-## 4. Coût de classification
-\( C = C_{FP} \times FP + C_{FN} \times FN \)
+```python
+\pi_P \times \text{FNR} + \pi_N \times \text{FPR}
 ```
 
+### 7.4 Coût de Classification
+
+```python
+C = C_{FP} \times FP + C_{FN} \times FN
+```
+
+---
+
+## 8. Techniques Avancées
+
+### 8.1 Validation Croisée
+
+La **validation croisée** permet de réutiliser les données en testant le modèle sur différentes parties du dataset. Elle divise les données en **K parties** (ou "folds"), et entraîne et teste le modèle **K fois**.
+
+```python
+Erreur = \frac{1}{K} \sum_{i=1}^{K} \text{err}(i)
+```
+
+### 8.2 Bootstrap
+
+Le **Bootstrap** crée plusieurs sous-échantillons en tirant aléatoirement des données avec **remise** (un même exemple peut être sélectionné plusieurs fois).
+
+---
+
+## 9. Sélection des Variables
+
+La sélection des variables vise à choisir les caractéristiques les plus pertinentes pour prédire la variable cible. Il existe plusieurs méthodes :
+
+1. **Méthodes de Score** : Attribuent un score à chaque variable pour évaluer sa pertinence.
+2. **Méthodes de Sous-Ensembles** : Sélectionnent un sous-ensemble réduit de variables pour améliorer la performance du modèle.
+3. **Méthode Wrapper** : Évalue les sous-ensembles de variables en fonction de la performance du modèle.
+
+---
