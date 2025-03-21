@@ -216,6 +216,21 @@ La sélection des variables vise à choisir les caractéristiques les plus perti
 2. **Méthodes de Sous-Ensembles** : Sélectionnent un sous-ensemble réduit de variables pour améliorer la performance du modèle.
 3. **Méthode Wrapper** : Évalue les sous-ensembles de variables en fonction de la performance du modèle.
 
+## 17. Régression Logistique
+
+La régression logistique est un algorithme d'apprentissage supervisé utilisé principalement pour la classification binaire (deux classes : 0 ou 1)
+
+La régression logistique utilise une transformation sigmoïde pour convertir une combinaison linéaire des variables d’entrée en une probabilité entre 0 et 1.
+
+h(x) = 1/1+exp(-z)
+
+## 18. Support Vector Machine (SVM)
+ 
+un algorithme d’apprentissage supervisé utilisé pour la classification et la régression. Son but principal est de trouver une hyperplan optimal qui sépare les données en classes distinctes avec une marge maximale
+
+Un hyperplan avec une grande marge réduit le risque de mauvaise généralisation
+
+
 ---
 
 ## 12. Large Language Models (LLMs)
